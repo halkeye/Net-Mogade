@@ -48,6 +48,7 @@ sub new
         $self = fields::new($self);
     }
     @$self{keys %args} = values %args;
+    $self->{base} ||= 'http://api2.mogade.com/api/gamma/';
     return $self;
 }
 
