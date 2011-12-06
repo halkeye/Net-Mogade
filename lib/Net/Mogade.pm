@@ -3,6 +3,7 @@ package Net::Mogade;
 use strict;
 use warnings;
 
+# ABSTRACT: Perl Wrapper for the mogade.com leaderboard/scores service
 our $VERSION = "0.01";
 
 use LWP::UserAgent;
