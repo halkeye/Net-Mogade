@@ -111,10 +111,6 @@ x_Dist_Zilla:
       name: ExtraTests
       version: 4.300003
     -
-      class: Dist::Zilla::Plugin::NextRelease
-      name: NextRelease
-      version: 4.300003
-    -
       class: Dist::Zilla::Plugin::PkgVersion
       name: PkgVersion
       version: 4.300003
