@@ -162,12 +162,12 @@ sub scoreGet
     validate( @_, {
             lid => 1,
             userkey => {
-                type => params::validate::scalar,
+                type => Params::Validate::SCALAR,
                 optional => 1,
                 depends => ['username']
             },
             username => {
-                type => params::validate::scalar,
+                type => Params::Validate::SCALAR,
                 optional => 1,
                 depends => ['userkey']
             },
