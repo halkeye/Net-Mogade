@@ -318,7 +318,7 @@ Updates a users score for a given leaderboard(C<lid>), C<username> and C<userkey
 
 =head2 scoreGet(lid => '', [userkey => '', username=>''], [scope=>SCOPE_DAILY], [page => 0], [record => 20])
 
-Retrieves scores for a given leaderboard (C<lid>). If C<username> and C<userkey> is provided, it will try to return the data (by C<page>) surrounding the user. C<record> controlls how many are returned. C<page> controlls which page offset gets returned.
+Retrieves scores for a given leaderboard (C<lid>). If C<username> and C<userkey> is provided, it will try to return the data (by C<page>) surrounding the user. C<record> controls how many are returned. C<page> controls which page offset gets returned.
 Most can be mixed and matched.
 
 =head2 achievementGrant(aid=>'', username=>'', userkey=>'')
