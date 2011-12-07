@@ -231,7 +231,7 @@ sub logError
             }
     });
 
-    my $response = $self->_post("errors", %args, key => $self->{key});
+    $self->_post("errors", %args, key => $self->{key});
     return 1;
 }
 
@@ -244,7 +244,7 @@ sub logStart
             userkey => 1,
     });
 
-    my $response = $self->_post("stats", %args, key => $self->{key});
+    $self->_post("stats", %args, key => $self->{key});
     return 1;
 }
 
