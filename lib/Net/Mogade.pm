@@ -8,10 +8,11 @@
 #
 package Net::Mogade;
 
+# ABSTRACT: Perl Wrapper for the mogade.com leaderboard/scores service
+
 use strict;
 use warnings;
 
-# ABSTRACT: Perl Wrapper for the mogade.com leaderboard/scores service
 our $VERSION = "0.01";
 
 use LWP::UserAgent;
@@ -29,6 +30,7 @@ use fields qw(
     key
     secret
 );
+
 
 use constant {
     SCOPE_DAILY => 1,
@@ -179,7 +181,7 @@ sub scoreGet
             },
             scope => 0,
             page => 0,
-            records => 0,
+            record => 0,
     });
 
     my $response = $self->_get("scores", %args);
@@ -187,9 +189,9 @@ sub scoreGet
 }
 
 
-## Achivements
+## Achievements
 
-sub achivementGrant
+sub achievementGrant
 {
     my $self = shift;
     my %args = @_;
@@ -204,7 +206,7 @@ sub achivementGrant
 }
 
 
-sub achivementGet
+sub achievementGet
 {
     my $self = shift;
     my %args = @_;
@@ -239,7 +241,7 @@ sub logError
             }
     });
 
-    my $response = $self->_post("errors", %args, key => $self->{key});
+    $self->_post("errors", %args, key => $self->{key});
     return 1;
 }
 
@@ -252,13 +254,14 @@ sub logStart
             userkey => 1,
     });
 
-    my $response = $self->_post("stats", %args, key => $self->{key});
+    $self->_post("stats", %args, key => $self->{key});
     return 1;
 }
 
 1;
 
-__END__
+
+
 =pod
 
 =head1 NAME
@@ -268,6 +271,96 @@ Net::Mogade - Perl Wrapper for the mogade.com leaderboard/scores service
 =head1 VERSION
 
 version 0.001
+
+=head1 SYNOPSIS
+
+ my $obj = Net::Mogade->new(
+     key => '4edd1d4cd1798f5d86000003',
+     secret => 'Yl=>yBmUNS6FuNUy[]NnBu8',
+ );
+
+ warn Dumper $obj->scoreGet(lid=>'4edd31e9d1798f1639000001', scope=>Net::Mogade::SCOPE_YESTERDAY);
+
+=head1 NAME
+
+Net::Mogade - Perl wrapper for the mogade.com leaderboard/scores service
+
+=head1 CONSTANTS
+
+=head2 SCOPE_DAILY
+
+ Constant for daily scores. Mostly for scoresGet and ranks.
+
+=head2 SCOPE_WEEKLY
+
+ Constant for weekly scores. Mostly for scoresGet and ranks.
+
+=head2 SCOPE_OVERALL
+
+ Constant for overall scores. Mostly for scoresGet and ranks.
+
+=head2 SCOPE_YESTERDAY
+
+ Constant for yesterday scores. Mostly for scoresGet and ranks.
+
+=head1 METHODS 
+
+=head2 new(key=>'key', secret=>'secret', [base=>'http://other/location'])
+
+Creates a new Net::Mogade object. Options:
+
+=over 4
+
+=item * C<key> 
+
+ Key provided by mogade
+
+=item * C<secret>
+
+ Secret provided by mogade - Keep secret
+
+=item * C<base> (optional) 
+
+ Base url to mogade api. Default is mogade.com's api servers
+
+=back
+
+=head2 ranks(lid=>'', userkey=>'', username=>'', [scope=>SCOPE_DAILY])
+
+Get a player's current rank by providing a leaderboard(C<lid>) C<username> and C<userkey>. Optionally provide scopes. Will return all scopes unless one is specified.
+
+=head2 scoreSave(lid => '', points => '', userkey => '', username => '', [data => ''])
+
+Updates a users score for a given leaderboard(C<lid>), C<username> and C<userkey>. data is an optional 50 character string that will be stored and returned when scores are retrieved.
+
+=head2 scoreGet(lid => '', [userkey => '', username=>''], [scope=>SCOPE_DAILY], [page => 0], [record => 20])
+
+Retrieves scores for a given leaderboard (C<lid>). If C<username> and C<userkey> is provided, it will try to return the data (by C<page>) surrounding the user. C<record> controls how many are returned. C<page> controls which page offset gets returned.
+Most can be mixed and matched.
+
+=head2 achievementGrant(aid=>'', username=>'', userkey=>'')
+
+Gives a C<username> and C<userkey> pair an achievement(C<aid>)
+
+=head2 achievementGet(username=>'', userkey=>'')
+
+Retrieves achievements for a given C<username> and C<userkey>
+
+=head2 logError(subject=>'', [details=>''])
+
+Logs an error to the mogade servers. C<subject> is the string that gets shown, C<details> is optional amount of extra data that can be provided
+
+=head2 logStart(userkey=>'')
+
+Records a game startup for a given C<userkey>
+
+=head1 AUTHORS
+
+Gavin Mogan E<lt>halkeye@cpan.orgE<gt>
+
+=head1 SEE ALSO
+
+L<http://mogade.com/manage/api>
 
 =head1 AUTHOR
 
@@ -281,4 +374,7 @@ This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
+
+
+__END__
 
