@@ -114,11 +114,6 @@
             "version" : "2.0.2"
          },
          {
-            "class" : "Dist::Zilla::Plugin::Test::CPAN::Changes",
-            "name" : "Test::CPAN::Changes",
-            "version" : "0.005"
-         },
-         {
             "class" : "Dist::Zilla::Plugin::Test::UnusedVars",
             "name" : "Test::UnusedVars",
             "version" : "2.0.1"
@@ -245,11 +240,6 @@
             "version" : "4.300003"
          },
          {
-            "class" : "Dist::Zilla::Plugin::CheckChangeLog",
-            "name" : "CheckChangeLog",
-            "version" : "0.01"
-         },
-         {
             "class" : "Dist::Zilla::Plugin::Git::Check",
             "name" : "Git::Check",
             "version" : "1.113220"
@@ -272,11 +262,6 @@
          {
             "class" : "Dist::Zilla::Plugin::Git::Tag",
             "name" : "TagRelease",
-            "version" : "1.113220"
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::Git::Push",
-            "name" : "Git::Push",
             "version" : "1.113220"
          },
          {

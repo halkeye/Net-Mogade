@@ -9,7 +9,6 @@ dist.ini
 lib/Net/Mogade.pm
 t/00-compile.t
 t/000-report-versions-tiny.t
-t/release-cpan-changes.t
 t/release-distmeta.t
 t/release-has-version.t
 t/release-kwalitee.t
