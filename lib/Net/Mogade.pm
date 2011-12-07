@@ -183,7 +183,7 @@ sub scoreGet
 
 ## Achievements
 
-sub achivementGrant
+sub achievementGrant
 {
     my $self = shift;
     my %args = @_;
@@ -198,7 +198,7 @@ sub achivementGrant
 }
 
 
-sub achivementGet
+sub achievementGet
 {
     my $self = shift;
     my %args = @_;
@@ -321,13 +321,13 @@ Updates a users score for a given leaderboard(C<lid>), C<username> and C<userkey
 Retrieves scores for a given leaderboard (C<lid>). If C<username> and C<userkey> is provided, it will try to return the data (by C<page>) surrounding the user. C<record> controlls how many are returned. C<page> controlls which page offset gets returned.
 Most can be mixed and matched.
 
-=head2 achivementGrant(aid=>'', username=>'', userkey=>'')
+=head2 achievementGrant(aid=>'', username=>'', userkey=>'')
 
-Gives a C<username> and C<userkey> pair an achivement(C<aid>)
+Gives a C<username> and C<userkey> pair an achievement(C<aid>)
 
-=head2 achivementGet(username=>'', userkey=>'')
+=head2 achievementGet(username=>'', userkey=>'')
  
-Retrieves achivements for a given C<username> and C<userkey>
+Retrieves achievements for a given C<username> and C<userkey>
 
 =head2 logError(subject=>'', [details=>''])
 
