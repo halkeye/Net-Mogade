@@ -1,6 +1,6 @@
 {{$NEXT}}
-
-0.002     2011-12-10 00:30:32 America/Vancouver
+  - fixing ranks command. It takes scopes not scope, and scopes is an array
+  - Adding min version to dzil, which is apparently 5.8
 
 0.001     2011-12-06 18:57:18 America/Vancouver
   - original version
