@@ -98,7 +98,7 @@ sub _get
 {
     my $self = shift;
     my $urlSegment = shift;
-    my %args = @_;
+    my @args = @_;
     
     my $agent = LWP::UserAgent->new();
     $agent->agent("Net::Mogade/$Net::Mogade::VERSION");
@@ -110,7 +110,7 @@ sub _get
         $agent->conn_cache(_getCache());
     }
     my $url = URI->new($self->{base} . $urlSegment);
-    $url->query_form($url->query_form(), %args);
+    $url->query_form($url->query_form(), @args);
 
     my $request = GET $url, @headers;
     my $response = $agent->request($request);
@@ -126,10 +126,23 @@ sub ranks
             lid => 1,
             userkey => 1,
             username => 1,
-            scope => 0,
+            scopes => {
+                optional => 1,
+                type => Params::Validate::ARRAYREF,
+            }
     });
 
-    my $response = $self->_get("ranks", %args);
+    my @cgiArgs = ();
+    if ($args{scopes})
+    {
+        my @scopes = join ',',  @{delete $args{scopes}};
+        @scopes = map { ("scopes[]", $_) } @scopes;
+        push @cgiArgs, @scopes;
+    }
+    push @cgiArgs, %args;
+
+    my $response = $self->_get("ranks", @cgiArgs);
+    # Content isn't json if only one scope is provided
     return $json->jsonToObj($response->content);
 }
 
@@ -308,9 +321,9 @@ Creates a new Net::Mogade object. Options:
 
 =back
 
-=head2 ranks(lid=>'', userkey=>'', username=>'', [scope=>SCOPE_DAILY])
+=head2 ranks(lid=>'', userkey=>'', username=>'', [scopes=>[SCOPE_DAILY, SCOPE_OVERALL]])
 
-Get a player's current rank by providing a leaderboard(C<lid>) C<username> and C<userkey>. Optionally provide scopes. Will return all scopes unless one is specified.
+Get a player's current rank by providing a leaderboard(C<lid>) C<username> and C<userkey>. Optionally provide C<scopes>. Will return all scopes unless one is specified.
 
 =head2 scoreSave(lid => '', points => '', userkey => '', username => '', [data => ''])
 
