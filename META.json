@@ -37,14 +37,15 @@
             "JSON::Any" : 0,
             "LWP::ConnCache" : 0,
             "LWP::UserAgent" : 0,
-            "Params::Validate" : 0
+            "Params::Validate" : 0,
+            "perl" : "5.008"
          }
       }
    },
    "provides" : {
       "Net::Mogade" : {
          "file" : "lib/Net/Mogade.pm",
-         "version" : "0.001"
+         "version" : "0.002"
       }
    },
    "release_status" : "stable",
@@ -53,15 +54,25 @@
          "mailto" : "bug-net-mogade at rt.cpan.org",
          "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=Net-Mogade"
       },
-      "homepage" : "http://search.cpan.org/dist/Net-Mogade/"
+      "homepage" : "https://github.com/halkeye/Net-Mogade",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/halkeye/Net-Mogade.git",
+         "web" : "https://github.com/halkeye/Net-Mogade"
+      }
    },
-   "version" : "0.001",
+   "version" : "0.002",
    "x_Dist_Zilla" : {
       "plugins" : [
          {
             "class" : "Dist::Zilla::Plugin::Git::NextVersion",
             "name" : "Git::NextVersion",
             "version" : "1.113220"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::MinimumPerl",
+            "name" : "MinimumPerl",
+            "version" : "1.003"
          },
          {
             "class" : "Dist::Zilla::Plugin::GatherDir",
@@ -285,8 +296,13 @@
             "version" : "1.113220"
          },
          {
-            "class" : "Dist::Zilla::Plugin::UploadToCPAN",
-            "name" : "UploadToCPAN",
+            "class" : "Dist::Zilla::Plugin::ConfirmRelease",
+            "name" : "ConfirmRelease",
+            "version" : "4.300003"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::FakeRelease",
+            "name" : "FakeRelease",
             "version" : "4.300003"
          },
          {

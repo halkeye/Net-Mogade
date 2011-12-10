@@ -270,7 +270,7 @@ Net::Mogade - Perl Wrapper for the mogade.com leaderboard/scores service
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 SYNOPSIS
 

@@ -17,7 +17,7 @@ my %module_build_args = (
     "Gavin Mogan <gavin\@kodekoan.com>"
   ],
   "dist_name" => "Net-Mogade",
-  "dist_version" => "0.001",
+  "dist_version" => "0.002",
   "license" => "perl",
   "module_name" => "Net::Mogade",
   "recommends" => {},
@@ -29,7 +29,8 @@ my %module_build_args = (
     "JSON::Any" => 0,
     "LWP::ConnCache" => 0,
     "LWP::UserAgent" => 0,
-    "Params::Validate" => 0
+    "Params::Validate" => 0,
+    "perl" => "5.008"
   },
   "script_files" => []
 );
